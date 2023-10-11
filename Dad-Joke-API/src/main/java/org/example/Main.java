@@ -25,10 +25,14 @@ public class Main {
                 " \"Punchline: \".";
         String promptJson = String.format("""
                 '{
-                     "model": "gpt-3.5-turbo",
-                     "messages": [{"role": "user", "content": "%s"}],
-                     "temperature": 0.7
-                   }'""", prompt);
+                   "prompt": "%s",
+                   "max_tokens": 50,
+                   "temperature": 0.7,
+                   "top_p": 1.0,
+                   "frequency_penalty": 0.0,
+                   "presence_penalty": 0.0
+                 }
+                 '""", prompt);
         String urlPath ="https://api.openai.com/v1/chat/completions";
         HttpRequest httpRequest = HttpRequest.newBuilder()
                                   .uri(URI.create(urlPath))
