@@ -1,10 +1,8 @@
-package org.example;
+package org.falcon;
 
-import javax.net.ssl.HttpsURLConnection;
+
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URI;
-import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -13,34 +11,30 @@ public class Main {
     public static void main(String[] args) {
         // Get API Key
         String path = "C:\\Users\\olive\\GitHub\\Dad-Joke-API\\" +
-                "Dad-Joke-API\\src\\main\\java\\org\\example\\key.txt";
+                "Dad-Joke-API\\src\\main\\java\\org\\falcon\\key.txt";
         FileLineRetriever fileLineRetriever = new FileLineRetriever(0, path);
         String key = fileLineRetriever.getData();
         // Formulate Request
         HttpClient httpClient = HttpClient.newHttpClient();
         int maxTokens = 50;
-        String prompt = "You are a dad who makes jokes that are corny and" +
-                " out-of-date. Generate a dad joke which is started" +
-                " with \"Joke: \" and if there is a punchline" +
-                " \"Punchline: \".";
-        String promptJson = String.format("""
-                '{
-                   "prompt": "%s",
-                   "max_tokens": 50,
-                   "temperature": 0.7,
-                   "top_p": 1.0,
-                   "frequency_penalty": 0.0,
-                   "presence_penalty": 0.0
-                 }
-                 '""", prompt);
-        String urlPath ="https://api.openai.com/v1/chat/completions";
+        String systemPrompt = "You are a dad who makes jokes that are corny" +
+                " and out-of-date. ";
+        String userPrompt =  "Generate a dad joke which is started" +
+                " with \\\"Joke: \\\" and if there is a punchline" +
+                " \\\"Punchline: \\\".";
+        String fullPrompt = systemPrompt + userPrompt;
+        String promptJson = String.format("{\n" +
+                "    \"model\": \"gpt-3.5-turbo-instruct\",\n" +
+                "    \"prompt\": \"%s\",\n" +
+                "    \"max_tokens\": 100,\n" +
+                "    \"temperature\": 0.7\n" +
+                "  }", fullPrompt);
+        String urlPath ="https://api.openai.com/v1/completions";
         HttpRequest httpRequest = HttpRequest.newBuilder()
                                   .uri(URI.create(urlPath))
-                                  .POST(HttpRequest.BodyPublishers.ofString(promptJson))
                                   .setHeader("Authorization", "Bearer " + key)
                                   .setHeader("Content-Type", "application/json")
-                                    .setHeader("Accept", "application/json")
-
+                                  .POST(HttpRequest.BodyPublishers.ofString(promptJson))
                                   .build();
         // Send Request
         HttpResponse<String> httpResponse = null;
