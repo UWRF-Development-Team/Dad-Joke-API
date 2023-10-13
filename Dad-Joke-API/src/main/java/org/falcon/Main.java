@@ -19,6 +19,12 @@ import java.net.http.HttpResponse;
     - Temperature
     - Model
     - Prompt request
+
+    Concepts
+    - AI
+    - Internet request \
+                       - Json
+    - Question         /
  */
 public class Main {
     public static void main(String[] args) {
