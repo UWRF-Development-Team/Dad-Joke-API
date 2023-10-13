@@ -6,13 +6,27 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-
+/*
+    Request
+    - API Key
+    - Body (Prompt)
+    - Headers
+    - URL
+    Response
+    - Body (Joke)
+    Prompt
+    - Tokens
+    - Temperature
+    - Model
+    - Prompt request
+ */
 public class Main {
     public static void main(String[] args) {
         // Get API Key
-        String path = "C:\\Users\\olive\\GitHub\\Dad-Joke-API\\" +
-                "Dad-Joke-API\\src\\main\\java\\org\\falcon\\key.txt";
-        FileLineRetriever fileLineRetriever = new FileLineRetriever(0, path);
+//        String path = "C:\\Users\\olive\\GitHub\\Dad-Joke-API\\" +
+//                "Dad-Joke-API\\src\\main\\java\\org\\falcon\\key.txt";
+        String relativePath = "src/main/java/org/falcon/key.txt";
+        FileLineRetriever fileLineRetriever = new FileLineRetriever(0, relativePath);
         String key = fileLineRetriever.getData();
         // Formulate Request
         HttpClient httpClient = HttpClient.newHttpClient();
