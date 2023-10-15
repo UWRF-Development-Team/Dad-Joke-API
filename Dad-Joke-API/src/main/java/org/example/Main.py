@@ -9,34 +9,38 @@ openai.api_key = os.getenv("APIKEY") #specify the api key for openai object
 
 
 #complete object stores the response specified by parameters such as 'model' and 'messages
-complete = openai.ChatCompletion.create(
-    model="gpt-3.5-turbo",
-    messages=[
-        {"role": "system", "content": "you are a dad who makes corny dad jokes"},
-        {"role": "user", "content": "Generate a dad joke that starts with 'Joke:', and if there is a punchline, 'Punchline:'."}
-        ]
-)
-responseList = [] #store the 2 responses (joke and punchline) in this list
+def callAI():
+    return  openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "you are a dad who makes corny dad jokes"},
+            {"role": "user", "content": "Generate a dad joke that starts with 'Joke:', and if there is a punchline, 'Punchline:'."}
+            ]
+    )
 
-try: #make sure a response is recieved, and store it in a variable upon success
-    aiResponse = complete.choices[0].message
-except:
-   print("Unable to retrieve response")
+def validate(respObject):
+        try: #make sure a response is recieved, and store it in a variable upon success
+           return respObject.choices[0].message.content
+        except:
+            return "Unable to retrieve response"
 
-# aiResponse = {
-#   "role": "assistant",
-#   "content": "Joke: Why don't eggs tell jokes?\nPunchline: Because they might crack up!"
-# }
-print("response type: ", type(aiResponse))
-print(aiResponse)
 
-# myJoke = re.split("Joke:", str(aiResponse))
-# myPunch = re.split("Punchline:", str(aiResponse))
 
-#print(myList[1],'\n', myList[2], '\n', myList[3], '\n', myList[4])
-# joke = re.search("^Joke*\n$", str(myList[3]))
-# punchline = re.search("^Punchline*", str(myList[4]))
-#print (myJoke[1], '\n', myPunch[1])
+class main:
+    flag = True
+    while flag:
+        print("Would you like to hear a dad joke?\n")
+        response = input("y or n:")
+        if response == "y" or response == "Y":
+           aiResponse = validate(callAI())
+           responseList = re.split("\n\n", aiResponse)
+           for line in responseList:
+              print("\n",line)
+        else:
+            flag = False
+    print("We hope you enjoyed those Dad Jokes!")
 
-# print(joke, "\n", punchline)
+
+
+
 
