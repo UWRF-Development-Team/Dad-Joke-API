@@ -54,8 +54,8 @@ public class DadJoke {
         while (jokeCounter <= requestCounter) {
             //--------------------Create-Model--------------------------------
             String model = "gpt-3.5-turbo-instruct";
-            float temperature = 0.8f;
-            int maxTokens = 150;
+            float temperature = 0.9f;
+            int maxTokens = 300;
             String systemPrompt = "You are a dad who makes jokes that are corny" +
                     " and out-of-date. ";
             String userPrompt = "Generate a dad joke which is started with " +
