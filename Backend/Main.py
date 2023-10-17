@@ -10,11 +10,12 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 @app.route('/api/v1/getJoke', methods=['GET'])
 @cross_origin()
 def getJoke():
-    return jsonify({"message": "This is a response from the server"})
-    # respObj = CallAI()
-    # response = respObj.validate(respObj.callAI())
-    # return jsonify(response) #return joke
+    respObj = CallAI()
+    response = respObj.callAI()
+    responseBody = respObj.validate(response)
+    return jsonify(responseBody) #return joke
 
 app.run(debug=True)
 #start the application
 
+    # return jsonify({"message": "This is a response from the server"})

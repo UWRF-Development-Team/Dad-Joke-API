@@ -7,6 +7,7 @@ displayJoke = document.getElementById('displayJoke');
 button.addEventListener('click', handleClick);
 
 async function handleClick() {
+    displayJoke.textContent = "Generating...";
     let joke = await fetchData();
     displayJoke.textContent = JSON.stringify(joke);
    // showJoke(joke);

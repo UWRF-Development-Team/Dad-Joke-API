@@ -8,8 +8,11 @@ load_dotenv()
 openai.api_key = os.getenv("APIKEY") #specify the api key for openai object
 
 class CallAI:
+
+    # def __init__(self):
+    #    self.name = "Default constructor"
 #call the model and return the response
-    def callAI():
+    def callAI(self):
         return  openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=[
@@ -18,11 +21,12 @@ class CallAI:
                 ]
         )
 
-    def validate(respObject):
+    def validate(self, respObject):
        try: #make sure a response is recieved, and store it in a variable upon success
-          return respObject.choices[0].message.content
+          responseContent = respObject.choices[0].message.content
        except:
-          return "error"
+          responseContent = "error!"
+       return responseContent
 
     # class main:
     # flag = True
