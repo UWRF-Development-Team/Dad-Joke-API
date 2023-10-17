@@ -1,14 +1,20 @@
 #This file obtains the api key, connects to the open ai api, and prints the specified response
 from CallAI import CallAI
 from flask import Flask, jsonify
+from flask_cors import CORS, cross_origin
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
-@app.route("/api/v1/getJoke")
+
+@app.route('/api/v1/getJoke', methods=['GET'])
+@cross_origin()
 def getJoke():
-    respObj = CallAI()
-    response = respObj.validate(respObj.callAI)
-    return jsonify(response) #return joke
+    return jsonify({"message": "This is a response from the server"})
+    # respObj = CallAI()
+    # response = respObj.validate(respObj.callAI())
+    # return jsonify(response) #return joke
 
-app.run()
+app.run(debug=True)
 #start the application
 
