@@ -1,15 +1,18 @@
 //logic for the application that calls the api on the backend and displays the response 
 //on the page whenever the user clicks the button
-
+spinner = document.getElementById('spinner');
 button = document.getElementById('generateJoke');
 displayJoke = document.getElementById('displayJoke');
 
 button.addEventListener('click', handleClick);
 
 async function handleClick() {
-    displayJoke.textContent = "Generating...";
-    let joke = await fetchData();
+    displayJoke.textContent = "";
+    // spinner.classList.remove('d-none'); //show the spinner
+    // let joke = await fetchData();
+    // spinner.classList.add('d-none'); //hide the spinner
     displayJoke.textContent = JSON.stringify(joke);
+    //console.log(joke);
    // showJoke(joke);
 }
 
@@ -22,11 +25,20 @@ async function fetchData(){
 
     if(response.ok) {
         let joke = await response.json();
+
         return joke;
     }
     else {
         throw new Error("Error fetching data: " + `${response.status}`);
     }
+}
+
+let splitJoke = jokeObj =>{
+    //this function uses regular expression to split to jokes into two object
+    Joke = {joke: "", punchline: ""};
+    Joke.joke = "this is a joke";
+    Joke.punchline = "this is a punchline";
+    return Joke;
 }
 
  

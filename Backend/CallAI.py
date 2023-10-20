@@ -17,7 +17,8 @@ class CallAI:
             model="gpt-3.5-turbo",
             messages=[
                 {"role": "system", "content": "you are a dad who makes corny dad jokes"},
-                {"role": "user", "content": "Generate a dad joke that starts with 'Joke:', and if there is a punchline, 'Punchline:'."}
+                {"role": "user", "content": "Generate a dad joke that starts with 'Joke:',\
+                  and if there is a punchline, 'Punchline:'"}
                 ]
         )
 

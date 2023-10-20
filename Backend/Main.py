@@ -13,6 +13,7 @@ def getJoke():
     respObj = CallAI()
     response = respObj.callAI()
     responseBody = respObj.validate(response)
+    # temp = "Joke: Why don't scientists trust atoms?\n\nPunchline: Because they make up everything!"
     return jsonify(responseBody) #return joke
 
 app.run(debug=True)
