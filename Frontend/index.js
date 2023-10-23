@@ -11,7 +11,9 @@ async function handleClick() {
     // spinner.classList.remove('d-none'); //show the spinner
     // let joke = await fetchData();
     // spinner.classList.add('d-none'); //hide the spinner
-    displayJoke.textContent = JSON.stringify(joke);
+    funnyJoke = "Joke:Why can't you trust atoms?\n\nPunchline:Because they make up everything"
+    Joke = await splitJokeObject(funnyJoke);
+    displayJoke.textContent = Joke.punchline === ''? Joke.joke: Joke.joke + '? ' + Joke.punchline;
     //console.log(joke);
    // showJoke(joke);
 }
@@ -33,9 +35,10 @@ async function fetchData(){
     }
 }
 
-let splitJoke = jokeObj =>{
+let splitJokeObject = jokeStr =>{
     //this function uses regular expression to split to jokes into two object
     Joke = {joke: "", punchline: ""};
+    //regexp for assigning Joke.joke to joke, and Joke.punchline to punchline.
     Joke.joke = "this is a joke";
     Joke.punchline = "this is a punchline";
     return Joke;
