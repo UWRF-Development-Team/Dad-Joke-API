@@ -29,11 +29,13 @@ public class Joke {
         String punchlineDelimit = "Punchline: ";
         String joke = jokeUncut.substring(jokeDelimit.length(),
                                           jokeUncut.length());
-        joke = joke.replaceAll("\\\\n", "");
+        joke = joke.replaceAll("\\\\n", "").replace("\\\\r", "")
+                   .replace("\\", "")
+                .trim();
         String punchline = punchlineUncut.substring(punchlineDelimit.length(),
                                                     punchlineUncut.length() - 2);
         punchline = punchline.replace("\\\"", "\"")
-                             .replaceAll("\\\\n", "");;
+                             .replaceAll("\\\\n", "").trim();
         // Cut ending by 2 to remove unquote into comma
         //------------------------Set-Fields----------------------------------
         this.joke = joke;
