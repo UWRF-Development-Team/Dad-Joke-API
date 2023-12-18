@@ -8,14 +8,13 @@ button.addEventListener('click', handleClick);
 
 async function handleClick() {
     displayJoke.textContent = "";
-    // spinner.classList.remove('d-none'); //show the spinner
-    // let joke = await fetchData();
-    // spinner.classList.add('d-none'); //hide the spinner
-    funnyJoke = "Joke:Why can't you trust atoms?\n\nPunchline:Because they make up everything"
-    Joke = await splitJokeObject(funnyJoke);
-    displayJoke.textContent = Joke.punchline === ''? Joke.joke: Joke.joke + '? ' + Joke.punchline;
-    //console.log(joke);
-   // showJoke(joke);
+    //spinner.classList.remove('d-none'); //show the spinner
+    //let joke = await fetchData();
+    //spinner.classList.add('d-none'); //hide the spinner
+   // displayJoke.textContent = JSON.parse(joke);
+     funnyJoke = "Joke: Why can't you trust atoms?\n\nPunchline:Because they make up everything";
+     Joke = await splitJokeObject(funnyJoke);
+     displayJoke.textContent = Joke.punchline === ''? Joke.joke: Joke.joke + '? ' + Joke.punchline;
 }
 
 async function fetchData(){
@@ -36,11 +35,16 @@ async function fetchData(){
 }
 
 let splitJokeObject = jokeStr =>{
-    //this function uses regular expression to split to jokes into two object
+    //this function uses regular expression to split jokes into two strings in an object
     Joke = {joke: "", punchline: ""};
     //regexp for assigning Joke.joke to joke, and Joke.punchline to punchline.
-    Joke.joke = "this is a joke";
-    Joke.punchline = "this is a punchline";
+    let cleanString = jokeStr.replace('\n', '');
+    cleanString = cleanString.replace('\n', ''); //get rid of all possible newline declarators
+    Joke.joke =  cleanString.replace('^Joke:')
+    Joke.punchline = cleanString.replace('^Punchline:')
+
+    //Joke.joke = "this is a joke";
+    //Joke.punchline = "this is a punchline";
     return Joke;
 }
 
