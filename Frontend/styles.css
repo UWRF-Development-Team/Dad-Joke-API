@@ -1,0 +1,9 @@
+html, #image-display, body {
+    /* background-image: linear-gradient(to right, blue, white); */
+    /* background-color: black; */
+    background-color: lightcyan;
+}
+
+#jokeContainer {
+    background-color: rgb(179, 218, 243)
+}
