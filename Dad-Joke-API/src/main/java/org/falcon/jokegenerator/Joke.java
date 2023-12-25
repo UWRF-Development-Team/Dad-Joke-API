@@ -51,6 +51,9 @@ public class Joke {
         return String.format("%s\n%s\n", this.joke, this.punchline);
     }
     //------------------------------Getters-----------------------------------
+    public String getFullJoke() {
+        return this.joke + "\n" + this.punchline;
+    }
     public String getJoke() {
         return this.joke;
     }
