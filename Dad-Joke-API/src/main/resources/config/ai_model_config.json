@@ -1,0 +1,7 @@
+{
+  "model": "gpt-3.5-turbo-instruct",
+  "urlPath": "https://api.openai.com/v1/completions",
+  "maxTokens": 300,
+  "temperature": 0.9,
+  "fullPrompt": "Generate a dad joke which is started with \\\"Joke: \\\" and if there is a punchline \\\"Punchline: \\\"."
+}
