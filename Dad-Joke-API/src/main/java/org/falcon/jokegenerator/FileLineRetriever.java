@@ -1,7 +1,11 @@
 package org.falcon.jokegenerator;
 
+import org.springframework.core.io.ClassPathResource;
+
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Scanner;
 
 // From theoliverlear's Utilities library
@@ -27,7 +31,8 @@ public class FileLineRetriever {
         String line = "";
         try {
             int lineCounter = 0;
-            Scanner fileReader = new Scanner(new File(this.filePath));
+            InputStream fileStream = new ClassPathResource(this.filePath).getInputStream();
+            Scanner fileReader = new Scanner(fileStream);
             while (fileReader.hasNext()) {
                 line = fileReader.nextLine();
                 if (lineCounter == this.targetLineIndex) {
@@ -37,6 +42,8 @@ public class FileLineRetriever {
             }
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
     /**
