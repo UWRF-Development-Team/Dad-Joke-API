@@ -3,6 +3,8 @@ package org.falcon.jokegenerator;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+
 public class DadJokeGenerator {
     AiApiModel model;
     Joke joke;
@@ -14,7 +16,7 @@ public class DadJokeGenerator {
     //-------------------------Build-Model-From-Json--------------------------
     public void buildModelFromJson() {
         //----------------------Get-Data-From-Config--------------------------
-        String configFilePath = "Dad-Joke-API/src/main/resources/config/ai_model_config.json";
+        String configFilePath = "config/ai_model_config.json";
         FileDataRetriever fileDataRetriever = new FileDataRetriever(configFilePath);
         String configFileContents = fileDataRetriever.getData();
         // Parse model
@@ -54,7 +56,7 @@ public class DadJokeGenerator {
         if (this.joke != null) {
             previousJoke = this.joke.getFullJoke();
         }
-        String keyFilePath = "Dad-Joke-Api/src/main/java/org/falcon/key.txt";
+        String keyFilePath = "/key.txt";
         FileLineRetriever fileLineRetriever = new FileLineRetriever(0, keyFilePath);
         String key = fileLineRetriever.getData();
         String urlPath = this.getValueFromKey("", "urlPath");
