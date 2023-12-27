@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" dir="ltr"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Dad Joke API</title>
+    <link rel="stylesheet" href="../static/style.css"
+          th:href="@{/style.css}"/>
+</head>
+<body>
+<!---------------------------------Nav-Bar----------------------------------->
+<header>
+    <nav>
+        <ul>
+            <li><h4>Home</h4></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <section id="joke-generation-section">
+        <!---------------------Peter-Griffin-Image--------------------------->
+        <img class="dad-img"
+             src="../static/images/peter_griffin_2.png"
+             alt="Petter Griffin"
+             th:src="@{/images/peter_griffin_2.png}"/>
+        <div id="joke-generation-text-div">
+            <!------------------Introduction--------------------------------->
+            <h1 class="generation-section-text">Dad Joke API</h1>
+            <p>Get a random dad joke by clicking the button below.</p>
+            <!--------------Joke-Generation-Button--------------------------->
+            <div id="joke-button-div">
+                <h3 id="joke-button" class="generation-section-text">Generate</h3>
+            </div>
+            <img id="loading-wheel-img" src="../static/images/loading_wheel.gif"
+                 alt="Loading Wheel"
+                 th:src="@{/images/loading_wheel.gif}"/>
+            <!-----------------Generated-Joke-------------------------------->
+            <div id="generated-joke-div" th:replace="joke-patch :: joke-patch">
+
+            </div>
+        </div>
+        <!---------------------Homer-Simpson-Image--------------------------->
+        <img class="dad-img"
+             src="../static/images/homer_simpson.png"
+             alt="Homer Simpson"
+             th:src="@{/images/homer_simpson.png}"/>
+    </section>
+</main>
+<script src="../static/script.js" th:src="@{/script.js}" defer></script>
+</body>
+</html>
