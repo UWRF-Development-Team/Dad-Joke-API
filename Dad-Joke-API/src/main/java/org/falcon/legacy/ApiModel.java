@@ -1,4 +1,4 @@
-package org.falcon;
+package org.falcon.legacy;
 
 public class ApiModel {
     private String model;
