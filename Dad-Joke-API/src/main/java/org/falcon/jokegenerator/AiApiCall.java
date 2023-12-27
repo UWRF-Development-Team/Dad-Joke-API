@@ -1,6 +1,5 @@
 package org.falcon.jokegenerator;
 
-import org.falcon.ApiModel;
 
 import java.io.IOException;
 import java.net.URI;
