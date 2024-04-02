@@ -75,6 +75,9 @@ nav ul {
     margin: calc((2vh + 2vw) / 2);
     box-shadow: 0 0 calc((2.5vh + 2.5vw) / 2) rgba(0, 0, 0, 0.15);
 }
+#joke-type-title-text {
+    font-style: italic;
+}
 #joke-button-div {
     width: 40%;
     display: flex;
