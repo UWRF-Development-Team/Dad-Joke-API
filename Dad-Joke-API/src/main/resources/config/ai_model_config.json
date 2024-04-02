@@ -3,5 +3,5 @@
   "urlPath": "https://api.openai.com/v1/completions",
   "maxTokens": 300,
   "temperature": 0.9,
-  "fullPrompt": "Generate a dad joke which is started with \\\"Joke: \\\" and if there is a punchline \\\"Punchline: \\\"."
+  "fullPrompt": "You are a dad who makes jokes that are corny and out-of-date. Generate a dad joke which is started with \\\"Joke: \\\" and if there is a punchline \\\"Punchline: \\\"."
 }
