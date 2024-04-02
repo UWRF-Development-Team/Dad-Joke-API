@@ -8,8 +8,15 @@ import java.io.File;
 public class DadJokeGenerator {
     AiApiModel model;
     Joke joke;
+    String jokeType;
     //----------------------------Constructors--------------------------------
     public DadJokeGenerator() {
+        this.jokeType = "random";
+        this.buildModelFromJson();
+        this.fetchJoke();
+    }
+    public DadJokeGenerator(String jokeType) {
+        this.jokeType = jokeType;
         this.buildModelFromJson();
         this.fetchJoke();
     }
@@ -36,6 +43,21 @@ public class DadJokeGenerator {
     }
     //---------------------------Get-Value-From-Key---------------------------
     public String getValueFromKey(String json, String key) {
+        String templateJokeSelection = "Generate a dad joke which is" +
+                                        " started with \\\"Joke: \\\" and" +
+                                        " if there is" + " a punchline " +
+                                        "\\\"Punchline: \\\".\\\" And use" +
+                                        " the topic of %s and be specific".formatted(this.jokeType);
+        String prompt;
+        if (this.jokeType.equals("random")) {
+           prompt = "You are a dad who makes jokes that are " +
+                    "corny and out-of-date. Generate a dad joke which is started with" +
+                    " \\\"Joke: \\\" and if there is a punchline \\\"" +
+                    "Punchline: \\\".";
+        } else {
+            prompt = templateJokeSelection;
+        }
+        System.out.println("Prompt: " + prompt);
         // TODO: Implement regex parsing
         // See src/main/resources/config/ai_model_config.json
         return switch (key) {
@@ -43,14 +65,13 @@ public class DadJokeGenerator {
             case "urlPath" -> "https://api.openai.com/v1/completions";
             case "maxTokens" -> "300";
             case "temperature" -> "0.9";
-            case "fullPrompt" -> "Generate a dad joke which is started with" +
-                    " \\\"Joke: \\\" and if there is a punchline \\\"" +
-                    "Punchline: \\\".";
+            case "fullPrompt" -> prompt;
             default -> throw new IllegalStateException("Unexpected value: " + key);
         };
     }
     //----------------------------Fetch-Joke----------------------------------
     public void fetchJoke() {
+        this.buildModelFromJson();
         boolean jokeIsUnique = false;
         String previousJoke = "";
         if (this.joke != null) {
@@ -73,8 +94,10 @@ public class DadJokeGenerator {
     public Joke getJoke() {
         return this.joke;
     }
+    public String getJokeType() {return this.jokeType;}
     //------------------------------Setters-----------------------------------
     public void setJoke(Joke joke) {
         this.joke = joke;
     }
+    public void setJokeType(String jokeType) {this.jokeType = jokeType;}
 }
