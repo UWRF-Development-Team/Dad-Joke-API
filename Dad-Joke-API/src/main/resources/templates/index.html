@@ -19,7 +19,7 @@
 <main>
     <section id="joke-generation-section">
         <!---------------------Peter-Griffin-Image--------------------------->
-        <img class="dad-img"
+        <img id="peter-photo" class="dad-img"
              src="../static/images/peter_griffin_2.png"
              alt="Petter Griffin"
              th:src="@{/images/peter_griffin_2.png}"/>
@@ -39,10 +39,18 @@
                 </div>
             </section>
             <p>Get a random dad joke by clicking the button below.</p>
+            <section>
+                <div>
+                    <input id="play-audio-option" type="checkbox" value="Play Audio">Play Audio</input>
+                </div>
+            </section>
             <!--------------Joke-Generation-Button--------------------------->
             <div id="joke-button-div">
                 <h3 id="joke-button" class="generation-section-text">Generate</h3>
             </div>
+            <audio id="homer-sound-effect" src="../static/audio/homer_sound_effect.mp3"
+            th:src="@{/audio/homer_sound_effect.mp3}">
+            </audio>
             <img id="loading-wheel-img" src="../static/images/loading_wheel.gif"
                  alt="Loading Wheel"
                  th:src="@{/images/loading_wheel.gif}"/>
@@ -52,10 +60,10 @@
             </div>
         </div>
         <!---------------------Homer-Simpson-Image--------------------------->
-        <img class="dad-img"
-             src="../static/images/homer_simpson.png"
+        <img id="homer-photo" class="dad-img selected-dad"
+             src="../static/images/homer_simpson_2.png"
              alt="Homer Simpson"
-             th:src="@{/images/homer_simpson.png}"/>
+             th:src="@{/images/homer_simpson_2.png}"/>
     </section>
 </main>
 <script src="../static/script.js" th:src="@{/script.js}" defer></script>
