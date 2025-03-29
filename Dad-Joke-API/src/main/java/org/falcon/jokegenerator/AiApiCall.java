@@ -1,4 +1,5 @@
-package org.falcon;
+package org.falcon.jokegenerator;
+
 
 import java.io.IOException;
 import java.net.URI;
@@ -6,17 +7,17 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class ApiCall {
+public class AiApiCall {
     private String apiKey;
     private String url;
-    private ApiModel apiModel;
+    private AiApiModel aiApiModel;
     private String response;
     private String requestBody;
     //----------------------------Constructors--------------------------------
-    public ApiCall(String apiKey, String url, ApiModel apiModel) {
+    public AiApiCall(String apiKey, String url, AiApiModel aiApiModel) {
         this.apiKey = apiKey;
         this.url = url;
-        this.apiModel = apiModel;
+        this.aiApiModel = aiApiModel;
         this.buildRequestBody();
         this.fetchResponse();
     }
@@ -28,10 +29,10 @@ public class ApiCall {
                     "prompt": "%s",
                     "max_tokens": %d,
                     "temperature": %1.1f
-                }""", this.apiModel.getModel(),
-                      this.apiModel.getPrompt(),
-                      this.apiModel.getMaxTokens(),
-                      this.apiModel.getTemperature());
+                }""", this.aiApiModel.getModel(),
+                this.aiApiModel.getPrompt(),
+                this.aiApiModel.getMaxTokens(),
+                this.aiApiModel.getTemperature());
     }
     //---------------------------Fetch-Response-------------------------------
     public void fetchResponse() {
@@ -47,7 +48,7 @@ public class ApiCall {
         HttpResponse<String> responseHttp = null;
         try {
             responseHttp = httpClient.send(httpRequest,
-                                           HttpResponse.BodyHandlers.ofString());
+                    HttpResponse.BodyHandlers.ofString());
         } catch (IOException | InterruptedException ex) {
             ex.printStackTrace();
         }
@@ -64,8 +65,8 @@ public class ApiCall {
     public String getUrl() {
         return this.url;
     }
-    public ApiModel getApiModel() {
-        return this.apiModel;
+    public AiApiModel getApiModel() {
+        return this.aiApiModel;
     }
     public String getResponse() {
         return this.response;
@@ -80,8 +81,8 @@ public class ApiCall {
     public void setUrl(String url) {
         this.url = url;
     }
-    public void setApiModel(ApiModel apiModel) {
-        this.apiModel = apiModel;
+    public void setAiApiModel(AiApiModel aiApiModel) {
+        this.aiApiModel = aiApiModel;
     }
     public void setResponse(String response) {
         this.response = response;

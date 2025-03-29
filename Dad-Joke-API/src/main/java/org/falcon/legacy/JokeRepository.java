@@ -1,4 +1,4 @@
-package org.falcon;
+package org.falcon.legacy;
 
 import java.io.File;
 import java.io.FileNotFoundException;

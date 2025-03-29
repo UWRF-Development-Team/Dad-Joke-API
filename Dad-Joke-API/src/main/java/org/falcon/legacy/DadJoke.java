@@ -1,9 +1,10 @@
-package org.falcon;
+package org.falcon.legacy;
 
 import java.io.File;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
+import org.falcon.legacy.JokeRepository;
+import org.falcon.legacy.Joke;
 /*
     Request
     - API Key

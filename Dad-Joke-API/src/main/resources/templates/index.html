@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" dir="ltr"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Dad Joke API</title>
+    <link rel="stylesheet" href="../static/style.css"
+          th:href="@{/style.css}"/>
+</head>
+<body>
+<!---------------------------------Nav-Bar----------------------------------->
+<header>
+    <nav>
+        <ul>
+            <li><h4>Home</h4></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <section id="joke-generation-section">
+        <!---------------------Peter-Griffin-Image--------------------------->
+        <img id="peter-photo" class="dad-img"
+             src="../static/images/peter_griffin_2.png"
+             alt="Petter Griffin"
+             th:src="@{/images/peter_griffin_2.png}"/>
+        <div id="joke-generation-text-div">
+            <!------------------Introduction--------------------------------->
+            <h1 class="generation-section-text">Dad Joke API</h1>
+            <section id="joke-type-section">
+                <div id="joke-type-title-div">
+                    <h3 id="joke-type-title-text">Joke Types</h3>
+                    <select id="joke-type-selection" name="joke-options" >
+                        <option value="random">Random</option>
+                        <option value="classic_cartoon">Classic cartoon</option>
+                        <option value="meat_grilling">Meat/grilling</option>
+                        <option value="napping">Napping</option>
+                        <option value="exaggerated_skills">Exaggerated skills</option>
+                    </select>
+                </div>
+            </section>
+            <p>Get a random dad joke by clicking the button below.</p>
+            <section>
+                <div>
+                    <input id="play-audio-option" type="checkbox" value="Play Audio">Play Audio</input>
+                </div>
+            </section>
+            <!--------------Joke-Generation-Button--------------------------->
+            <div id="joke-button-div">
+                <h3 id="joke-button" class="generation-section-text">Generate</h3>
+            </div>
+            <audio id="homer-sound-effect" src="../static/audio/homer_sound_effect.mp3"
+            th:src="@{/audio/homer_sound_effect.mp3}">
+            </audio>
+            <img id="loading-wheel-img" src="../static/images/loading_wheel.gif"
+                 alt="Loading Wheel"
+                 th:src="@{/images/loading_wheel.gif}"/>
+            <!-----------------Generated-Joke-------------------------------->
+            <div id="generated-joke-div" th:replace="joke-patch :: joke-patch">
+
+            </div>
+        </div>
+        <!---------------------Homer-Simpson-Image--------------------------->
+        <img id="homer-photo" class="dad-img selected-dad"
+             src="../static/images/homer_simpson_2.png"
+             alt="Homer Simpson"
+             th:src="@{/images/homer_simpson_2.png}"/>
+    </section>
+</main>
+<script src="../static/script.js" th:src="@{/script.js}" defer></script>
+</body>
+</html>
